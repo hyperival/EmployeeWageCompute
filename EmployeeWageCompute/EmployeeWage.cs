@@ -11,7 +11,19 @@ namespace EmployeeWageCompute
 
         public const int is_Fulltime = 1;
         public const int is_Parttime = 2;
-        public static int ComputeWage(string company, int mAX_HRS_PER_MONTH, int no_OF_Working_Days, int empRatePerHr)
+        private string company;
+        private int mAX_HRS_PER_MONTH;
+        private int no_OF_Working_Days;
+        private int empRatePerHr;
+        private int totalEmpWage;
+        public EmployeeWage(string company, int mAX_HRS_PER_MONTH, int no_OF_Working_Days, int empRatePerHr)
+        {
+            this.company = company;
+            this.mAX_HRS_PER_MONTH = mAX_HRS_PER_MONTH;
+            this.no_OF_Working_Days = no_OF_Working_Days;
+            this.empRatePerHr = empRatePerHr;
+        }
+        public void ComputeWage()
         {
             Console.WriteLine("Welcome to Employee Wage Computation problem");
             int empHrs;
@@ -40,15 +52,24 @@ namespace EmployeeWageCompute
                 Console.WriteLine(" Day   #: " + day + "  Employee hours attended till the day  is " + totalEmpHrs);
                 day++;
             }
-            int totalEmpWage = totalEmpHrs * empRatePerHr;
-            Console.WriteLine("  Employee Total monthly wage for Company :" + totalEmpWage);
-            return totalEmpWage;
+            totalEmpWage = totalEmpHrs * empRatePerHr;
+        }
+        public string toString()
+        {
+            return "Total Employee Wage for the Company " + this.company + " is " + this.totalEmpWage;
         }
         public static void Main(string[] args)
         {
-            ComputeWage("Reliance", 100, 30, 240);
-            ComputeWage("tata", 120, 26, 208);
-            ComputeWage("Microsoft", 150, 26, 180);
+            EmployeeWage Reliance = new EmployeeWage("Reliance", 100, 30, 240);
+            Reliance.ComputeWage();
+            Console.WriteLine(Reliance.toString());
+            EmployeeWage tata = new EmployeeWage("tata", 120, 26, 208);
+            tata.ComputeWage();
+            Console.WriteLine(tata.toString());
+            EmployeeWage Microsoft = new EmployeeWage("AdityaBirla", 150, 26, 180);
+            Microsoft.ComputeWage();
+            Console.WriteLine(Microsoft.toString());
+
         }
     }
 }
